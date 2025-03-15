@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- favIcon -->
+  <link rel="shortcut icon" href="./assets/fa-book-open.png" type="image/x-icon">
+  <!-- popins font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <!-- daysiUi -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!--Font Awesome -->
+  <script src="https://kit.fontawesome.com/682586dc74.js" crossorigin="anonymous"></script>
+  <title>English Janala</title>
+  <style>
+    .allfont {
+      font-family: "Poppins", sans-serif;
+      ;
+    }
+  </style>
+</head>
+
+<body class="allfont">
+  <header>
+    <!-- nav -->
+    <nav class="relative">
+      <div class="navbar bg-base-100 shadow-sm fixed">
+        <div class="flex justify-between w-11/12 mx-auto ">
+          <div class=" flex items-center text-2xl font-bold ">
+            <p>English</p>
+            <img class="w-8 h-8" src="./assets/logo.png" alt="">
+            <p>জানালা</p>
+          </div>
+          <div class="">
+            <button onclick="scrollToFAQ()" class="btn  hover:bg-blue-700 hover:text-white"><img
+                src="./assets/fa-circle-question.png" alt="">
+              FAQ</button>
+            <button onclick="scrollToLearn()" class="btn  hover:bg-blue-700 hover:text-white"><img
+                src="./assets/fa-book-open.png" alt="">
+              Learn</button>
+            <button class="btn  hover:bg-blue-700 hover:text-white"><img src="./assets/fa-arrow-right-from-bracket.png"
+                alt=""> Logout</button>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+    <!-- banner -->
+    <div id="banner" class="flex items-center justify-between w-11/12 mx-auto h-[100vh] ">
+      <!-- left -->
+      <div class=" font-bold space-y-3 w-[50%]">
+        <h2 class="text-5xl font-bold"><span class="text-[#00BCFF]">English</span> is Easy!!</h2>
+        <p class="text-xl ">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান,
+          আমাদের Interactive
+          Lessons
+          আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+        <div class="mt-10 space-y-2">
+          <input id="name" class="block p-3  w-96  border-[#18181B20] " type="text" placeholder="Type Your Nmae ">
+          <input id="password" class="block p-3 w-96  border-[#18181B20]" type="password">
+        </div>
+        <button id="get-start" class="btn bg-[#3D26C7] text-white mt-4 rounded-sm">Get
+          Started</button>
+      </div>
+      <!-- right -->
+      <div>
+        <img class="w-[500px]" src="./assets/hero-student.png" alt="">
+      </div>
+    </div>
+
+  </header>
+  <main>
+    <!-- Vocabularies section -->
+    <section id="leran-section" class="w-11/12 mx-auto pt-24 mt-10 h-fit overflow-y-scroll hidden">
+      <!--Vocabularies btn -->
+      <div>
+        <h3 class="text-center text-4xl font-bold mb-10"><span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+        </h3>
+        <div id="Vocabularies-btn-container" class="text-center">
+
+          <button onclick="lodeAllCard()" class="btn"><img src="./assets/fa-book-open.png" alt=""> All</button>
+        </div>
+      </div>
+      <!-- Vocabularies card -->
+      <div class="  w-10/12 mx-auto bg-[#F8F8F8] p-4 rounded-xl mt-10">
+        <!-- card model -->
+        <dialog id="card_detils" class="modal">
+          <div class="modal-box">
+            <div class="font-semibold space-y-3" id="details-container">
+
+            </div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+        <div id="card-continer" class="grid grid-cols-3 gap-3 ">
+          <div class="flex flex-col justify-center items-center my-10 space-y-3 col-span-full">
+            <h3>আপনি এখনো কোন lesson select করেন নি</h3>
+            <p class="text-3xl font-bold">একটি lesson select করুন</p>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+
+    </section>
+    <!-- Frequently Asked Questions -->
+    <section id="faq-section" class="w-11/12 mx-auto py-24  hidden">
+      <div class="collapse collapse-plus bg-base-100 border border-base-300 ">
+        <input type="radio" name="my-accordion-3" checked="checked" />
+        <div class="collapse-title font-semibold">the difference between var, let, and const?</div>
+        <div class="collapse-content text-sm">
+          <pre>
+            var: Function-scoped, can be redeclared and reassigned, hoisted with undefined (avoid using).
+            let: Block-scoped, cannot be redeclared but can be reassigned, hoisted but not initialized.
+            const: Block-scoped, cannot be redeclared or reassigned, hoisted but not initialized, but objects/arrays can be
+            modified.
+            Best practice: Use const by default, let if reassignment is needed, and avoid var.
+          </pre>
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">the difference between map(), forEach(), and filter()?</div>
+        <div class="collapse-content text-sm">
+          <pre>
+          map(): Returns a new array with modified values.  (Used for transformation)
+
+          forEach():  Executes a function on each item, no return value.  (Used for looping)
+
+          filter(): Returns a new array with elements that pass a condition.  (Used for filtering)
+        </pre>
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">explain arrow functions and how they are different from regular
+          functions</div>
+        <div class="collapse-content text-sm">
+          <pre>
+            Arrow Functions (=>) are a shorter way to write functions.
+            Key Differences:
+            this binding: Arrow functions inherit this from their surrounding scope, while regular functions have their own this.
+            arguments object: Regular functions have it, arrow functions do not.
+            Constructor (new) usage: Regular functions can be used as constructors, arrow functions cannot.
+          </pre>
+        </div>
+        <div class="collapse collapse-plus bg-base-100 border border-base-300">
+          <input type="radio" name="my-accordion-3" />
+          <div class="collapse-title font-semibold">how JavaScript Promises work
+          </div>
+          <div class="collapse-content text-sm">
+            <pre>
+              JavaScript Promises handle asynchronous tasks.
+              They have three states: Pending, Fulfilled (Success), and Rejected (Failure).
+              Use .then() for success, .catch() for errors, and .finally() for cleanup.
+              Common use cases: API calls, file reading, database operations.
+            </pre>
+          </div>
+          <div class="collapse collapse-plus bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">how closures work in JavaScript
+            </div>
+            <div class="collapse-content text-sm">
+              <pre>
+                A closure is a function that remembers its lexical scope (the variables from the outer function) even after the outer
+                function finishes. It's useful for data encapsulation and persistent state. Closures allow inner functions to access
+                outer variables.
+              </pre>
+            </div>
+          </div>
+    </section>
+
+
+  </main>
+  <footer class="py-14 border border-t-[#FFEBEB] border-b-white  border-r-white border-l-white">
+    <div class=" w-11/12 mx-auto">
+      <div class=" flex justify-between items-center">
+        <div class="space-y-2 ">
+          <div class="flex items-center  text-2xl font-bold">
+            <p>English</p>
+            <img class="w-8 h-8" src="./assets/logo.png" alt="">
+            <p>জানালা</p>
+          </div>
+          <p class="font-bold">ইংরেজি শিখুন সহজে</p>
+          <p>Providing ED-Tech Applications since 2025</p>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <p>Follow us</p>
+          <div class="flex gap-5">
+            <img src="./assets/instagram-thumb.png" alt="">
+            <img src="./assets/youtube-thumb.png" alt="">
+            <img src="./assets/github-thumb.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script/app.js"></script>
+</body>
+
+</html>
