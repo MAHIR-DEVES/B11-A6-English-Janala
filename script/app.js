@@ -1,4 +1,5 @@
 //
+const navBar = document.getElementById('nav-bar');
 const learnSection = document.getElementById('leran-section');
 const faqSection = document.getElementById('faq-section');
 const banner = document.getElementById('banner');
@@ -6,16 +7,28 @@ const bannerBtn = document.getElementById('get-start');
 const inputNmae = document.getElementById('name');
 const passworad = document.getElementById('password');
 // Assuming your buttons have the class 'button-sp'
+const loguOut = document.getElementById('logoOut');
 const buttons = document.querySelectorAll('.button-sp');
+const login = document.getElementById('login_model');
 
 bannerBtn.addEventListener('click', function () {
   if (passworad.value === '123456' && inputNmae.value !== '') {
     banner.style.display = 'none';
     learnSection.style.display = 'block';
     faqSection.style.display = 'block';
-    window.alert('Logged in successfull');
+    navBar.style.display = 'block';
+    Swal.fire({
+      title: 'অভিনন্দন! ',
+      text: 'আপনার লগ ইন সম্পূর্ণ হয়েছে !',
+      icon: 'success',
+      draggable: true,
+    });
   } else {
-    window.alert("Password doesn't matching! Please try again later");
+    Swal.fire({
+      title: 'input Invalid',
+      text: 'TPlease try again later 😊',
+      icon: 'error',
+    });
   }
 });
 
@@ -31,11 +44,11 @@ function displayAllBtn(display) {
   const VocabulariesBtnContainer = document.getElementById(
     'Vocabularies-btn-container'
   );
+
   for (let btn of display) {
     const createBtn = document.createElement('button');
-    console.log(btn.id);
     createBtn.innerHTML = `
-     <button id="btn-${btn.id}" onclick="lodeCategoryCard(${btn.level_no})" class="btn mr-3 hover:bg-blue-700 hover:text-white button-sp focus:bg-blue-700"><img class =""src="./assets/fa-book-open.png" alt="">${btn.lessonName}</button>
+     <button id="btn-${btn.id}" onclick="lodeCategoryCard(${btn.level_no})" class="mt-2 btn mr-3 text-blue-700 hover:bg-blue-700   hover:text-white button-sp focus:bg-blue-700 focus:text-white"><i  class="fa-solid fa-book-open"></i>${btn.lessonName}</button>
     `;
     VocabulariesBtnContainer.append(createBtn);
   }
@@ -71,7 +84,7 @@ function displayCard(displayCard) {
     const createDiv = document.createElement('div');
 
     createDiv.innerHTML = `
-    <div class="bg-white p-6 text-center space-y-2 font-bold rounded-xl">
+    <div class="bg-white hover:bg-blue-50 shadow-xl p-6 text-center space-y-2 font-bold rounded-xl ">
             <h4 class="text-2xl">${card.word}</h4>
             <p>Meaning /Pronounciation</p>
             <p>${card.meaning ?? 'অর্থ পাওয়া যায়নি'} / ${
@@ -101,12 +114,14 @@ const displayCardDetils = cardDtls => {
   document.getElementById('card_detils').showModal();
   const detailsContainer = document.getElementById('details-container');
   detailsContainer.innerHTML = `
-   <h2 class="text-2xl font-semibold">${cardDtls.word} (<i class="fa-solid fa-microphone"></i> : ${cardDtls.pronunciation})</h2>
-    <p >Meaning</p>
-    <span>${cardDtls.meaning}</span>
-    <p>Example</p>
+   <h2 class="text-2xl font-semibold">${
+     cardDtls.word
+   } (<i class="fa-solid fa-microphone"></i> : ${cardDtls.pronunciation})</h2>
+    <p class="mt-5">Meaning</p>
+    <span>${cardDtls.meaning ?? 'অর্থ পাওয়া যায়নি'}</span>
+    <p class="mt-5">Example</p>
     <span class="mb-8">${cardDtls.sentence}</span>
-    <div class="mt-8" >
+    <div class="mt-5" >
     <p class="">সমার্থক শব্দ গুলো</p>
     <div " id="word-container"> 
      
@@ -118,7 +133,7 @@ const displayCardDetils = cardDtls => {
   for (let Wbtn of getwordBtn) {
     const createWbtn = document.createElement('button');
     createWbtn.innerHTML = `
-    <button class="mr-5 btn hover:bg-blue-700 hover:text-white">${Wbtn}</button> 
+    <button class="mr-5 mt-2 btn hover:bg-blue-400 hover:text-white bg-blue-100">${Wbtn}</button> 
     `;
     wBtnContainer.append(createWbtn);
   }
@@ -147,13 +162,18 @@ function scrollToFAQ() {
   const faqSection = document.getElementById('faq-section');
   window.scrollTo({
     top: faqSection.offsetTop,
-    behavior: 'smooth', // Smooth scroll
+    behavior: 'smooth',
   });
 }
 function scrollToLearn() {
   const faqSection = document.getElementById('leran-section');
   window.scrollTo({
     top: faqSection.offsetTop,
-    behavior: 'smooth', // Smooth scroll
+    behavior: 'smooth',
   });
 }
+
+// logOUt
+loguOut.addEventListener('click', function () {
+  window.location.reload();
+});
